@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
           this.isAccountCreated = false;
         }else{
           this.displayMsg = 'Somthing went worng';
-          this.isAccountCreated = true;
+          this.isAccountCreated = false;
         }
       });
       

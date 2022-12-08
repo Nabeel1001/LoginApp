@@ -1,0 +1,50 @@
+<p class="tect-center fs-3" [ngClass]="isUserValid ? 'text-success pb-1' : 'text-danger pb-1'">
+    {{displaymessg}}
+</p>
+
+
+<form class="border p-3 rounded-3" [formGroup]="loginForm" (ngSubmit)="loginSubmited()">
+    <div class="row g-0">
+        <div class="col text-center p-2 mb-3 bg-light">
+            <span class="fs-3">Login</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="emaill" class="form-lable">Email Address</label>
+            <input type="email" class="form-control" id="emaill"
+            formControlName="email">
+            <div class="form-text text-danger" 
+            *ngIf="Email.errors?.['required'] && (Email.dirty || Email.touched)">
+                Email address required
+            </div>
+            <div class="form-text text-danger" 
+            *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">
+                Email Invalid
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="pwdd" class="form-lable">Password</label>
+            <input type="password" class="form-control" id="pwdd"
+            formControlName="pwd">
+            <div class="form-text text-danger" 
+            *ngIf="PWD.errors?.['required'] && (PWD.dirty || PWD.touched)">
+                Password is required
+            </div>
+            <div class="form-text text-danger" 
+            *ngIf="PWD.errors?.['minlength'] || PWD.errors?.['maxlenght'] 
+            && (PWD.dirty || PWD.touched)">
+                Incorrect
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="d-grid">
+                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </div>
+</form>
