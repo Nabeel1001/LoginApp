@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+
+
   constructor(private loginAuth: AuthService) { }
 
   ngOnInit(): void {
@@ -34,14 +36,14 @@ export class LoginComponent implements OnInit {
           this.displaymessg = 'Login Unsuccessfull';
           this.isUserValid = false;
         }else{
-          this.displaymessg = 'Login Successfull!!';
+          this.loginAuth.setToken(res);
           this.isUserValid = true;
         }
        
         
       });
 
-    console.log(this.loginForm)
+    
   }
 
 
