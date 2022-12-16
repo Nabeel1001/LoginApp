@@ -50,8 +50,20 @@ export class AuthService {
   loadCurrentUser(){
     const token = localStorage.getItem("access_token");
     const userInfo = token != null ? this.jwtHelperService.decodeToken(token) : null;
-    console.log(userInfo);
+    
+    const data = userInfo ? {
+      id: userInfo.id,
+      firstname: userInfo.firstname,
+      lastname: userInfo.lastname,
+      email: userInfo.email,
+      mobile: userInfo.mobile,
+      gender: userInfo.gender,
+    } : null;
+    this.currentUser.next(data);
   }
 
+  userLoggedin(): boolean{
+    return localStorage.getItem("access_token") ? true : false;
+  }
 
 }

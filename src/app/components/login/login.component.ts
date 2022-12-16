@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private loginAuth: AuthService) { }
+  constructor(private loginAuth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -38,9 +39,8 @@ export class LoginComponent implements OnInit {
         }else{
           this.loginAuth.setToken(res);
           this.isUserValid = true;
+          this.router.navigateByUrl('Home')
         }
-       
-        
       });
 
     
